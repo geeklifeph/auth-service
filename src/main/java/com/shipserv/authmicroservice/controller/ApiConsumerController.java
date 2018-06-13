@@ -32,5 +32,10 @@ public class ApiConsumerController {
 	public ApiConsumer findApiConsumer(@PathVariable(name = "username", required = true) String username) {
 		return service.findApiConsumer(username);
 	}
+	
+	@GetMapping("/token")
+	public void getToket() {
+		service.getToken();
+	}
 
 }

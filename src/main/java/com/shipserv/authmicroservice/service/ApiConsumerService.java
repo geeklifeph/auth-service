@@ -30,5 +30,9 @@ public class ApiConsumerService {
 		credential.setUsername(consumer.getUsername());
 		return credential;
 	}
+	
+	public void getToken() {
+		oauth2Service.getToken();
+	}
 
 }
