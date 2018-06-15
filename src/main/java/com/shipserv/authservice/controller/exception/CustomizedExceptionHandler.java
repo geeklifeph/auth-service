@@ -28,8 +28,8 @@ public class CustomizedExceptionHandler extends ExceptionHandlerExceptionResolve
 
 	}
 
-	@ExceptionHandler(UserNotFoundException.class)
-	public final ResponseEntity<ErrorDetail> handleUserNotFoundException(UserNotFoundException ex,
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public final ResponseEntity<ErrorDetail> handleUserNotFoundException(ResourceNotFoundException ex,
 			WebRequest webRequest) {
 		log.warn("handleUserNotFoundException() is called. " + ex.getMessage());
 		return new ResponseEntity<>(
@@ -39,7 +39,7 @@ public class CustomizedExceptionHandler extends ExceptionHandlerExceptionResolve
 	}
 
 	@ExceptionHandler(ServletRequestBindingException.class)
-	public final ResponseEntity<ErrorDetail> handleSpringRelatedValidationFailure(UserNotFoundException ex,
+	public final ResponseEntity<ErrorDetail> handleSpringRelatedValidationFailure(ResourceNotFoundException ex,
 			WebRequest webRequest) {
 		log.warn("handleSpringRelatedValidationFailure() is called. " + ex.getMessage());
 		return new ResponseEntity<>(

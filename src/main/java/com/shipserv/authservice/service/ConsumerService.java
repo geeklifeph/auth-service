@@ -1,6 +1,10 @@
 package com.shipserv.authservice.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shipserv.authservice.model.Consumer;
@@ -11,28 +15,37 @@ import com.shipserv.authservice.repository.ConsumerRepository;
 public class ConsumerService {
 
 	@Autowired
-	private ConsumerRepository repo;
+	private ConsumerRepository consumerRepository;
 
 	@Autowired
 	private OauthService oauthService;
 
 	public void saveConsumer(Consumer consumer) {
-		repo.save(consumer);
-	}
-	
-	public Consumer findConsumer(String username) {
-		return repo.findByUsername(username);
+		consumerRepository.save(consumer);
 	}
 
-	public Consumer addConsumer(String username) {
-		Consumer consumer = oauthService.addConsumer(username);
-		Consumer consumerWithCredentials = oauthService.addCredentials(consumer.getId());
+	public Optional<Consumer> findConsumer(String consumerId) {
+		return consumerRepository.findByConsumerId(consumerId);
+	}
+
+	public Consumer createConsumer(String username) {
+		Consumer consumer = oauthService.createConsumer(username);
+		Consumer consumerWithCredentials = oauthService.createCredentials(consumer.getId());
 		consumerWithCredentials.setUsername(consumer.getUsername());
 		return consumerWithCredentials;
 	}
-	
+
 	public Token getAccessToken(String clientId, String clientSecret, String apiPath) {
 		return oauthService.getAccessToken(clientId, clientSecret, apiPath);
+	}
+
+	public Page<Consumer> findAll(Pageable pageable) {
+		return consumerRepository.findAll(pageable);
+	}
+
+	public void deleteConsumer(Consumer consumer) {
+		oauthService.delete(consumer.getConsumerId());
+		consumerRepository.delete(consumer);
 	}
 
 }

@@ -35,10 +35,8 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Consumer extends EntityAuditModel{
 
-//	@Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-	
+	private static final long serialVersionUID = 5965430452862766139L;
+
 	@Column(unique = true)
 	@NotBlank
 	@Id

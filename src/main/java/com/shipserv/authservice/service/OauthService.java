@@ -21,7 +21,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.shipserv.authservice.model.ConfigProperties;
+import com.shipserv.authservice.config.ConfigProperties;
 import com.shipserv.authservice.model.Consumer;
 import com.shipserv.authservice.model.Token;
 
@@ -48,7 +48,7 @@ public class OauthService {
 		this.restTemplate = new RestTemplate(requestFactory);
 	}
 
-	public Consumer addConsumer(String username) {
+	public Consumer createConsumer(String username) {
 		HttpHeaders headers = getHttpHeader();
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("username", username);
@@ -56,7 +56,7 @@ public class OauthService {
 		return this.restTemplate.postForObject(configProperties.getOauthConsumersPath(), request, Consumer.class);
 	}
 
-	public Consumer addCredentials(String consumerId) {
+	public Consumer createCredentials(String consumerId) {
 		String url = configProperties.getOauthConsumersPath() + "/" + consumerId + "/oauth2";
 		HttpHeaders headers = getHttpHeader();
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
@@ -65,6 +65,11 @@ public class OauthService {
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 		Consumer res = this.restTemplate.postForObject(url, request, Consumer.class);
 		return res;
+	}
+	
+	public void delete(String consumerId) {
+		String url = configProperties.getOauthConsumersPath() + "/" + consumerId;
+		this.restTemplate.delete(url);
 	}
 
 	public Token getAccessToken(String clientId, String clientSecet, String apiPath) {
