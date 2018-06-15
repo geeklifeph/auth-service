@@ -1,31 +1,23 @@
-package com.shipserv.authmicroservice.model;
-
-import java.util.Date;
+package com.shipserv.authservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Oauth2ConsumerResponse {
+public class Token {
 
-	private String id;
-	private String username;
-	
-	
-	private Date createdAt;
-	
-	private String consumerId;
-	
-	private String clientId;
-	private String clientSecret;
-
+	private String tokenType;
+	private String accessToken;
+	private int expiresIn;
 }

@@ -1,4 +1,4 @@
-package com.shipserv.authmicroservice;
+package com.shipserv.authservice;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -10,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.shipserv.authmicroservice.repository.UserRepository;
+import com.shipserv.authservice.repository.ConsumerRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AuthMicroserviceApplicationTests {
+public class AuthServiceApplicationTests {
 
 	@Autowired
-	private UserRepository userRepository;
+	private ConsumerRepository consumerRepository;
 
 	@Test
 	public void checkPersistance() {
-		assertThat(userRepository.findAll(), not(Matchers.emptyIterable()));
+		assertThat(consumerRepository.findAll(), not(Matchers.emptyIterable()));
 	}
 
 }

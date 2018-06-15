@@ -1,4 +1,4 @@
-package com.shipserv.authmicroservice.controller.exception;
+package com.shipserv.authservice.controller.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
