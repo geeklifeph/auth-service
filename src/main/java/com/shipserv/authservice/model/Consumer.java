@@ -33,27 +33,29 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Consumer extends EntityAuditModel{
+public class Consumer extends EntityAuditModel {
 
 	private static final long serialVersionUID = 5965430452862766139L;
 
-	@Column(unique = true)
+	@Column(name = "ConsumerId", unique = true)
 	@NotBlank
 	@Id
 	private String consumerId;
 
-	@Column(unique = true)
+	@Column(name = "Username",unique = true)
 	@NotBlank
 	private String username;
 
 	@NotBlank
+	@Column(name = "ClientId")
 	private String clientId;
 
 	@NotBlank
+	@Column(name = "ClientSecret")
 	private String clientSecret;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "consumer")
-	private Set<Company> companies = new HashSet<>();
+	private Set<Company> companies;
 
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	@Transient

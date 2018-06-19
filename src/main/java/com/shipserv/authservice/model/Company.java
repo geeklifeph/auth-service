@@ -1,5 +1,6 @@
 package com.shipserv.authservice.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,21 +34,23 @@ import lombok.Setter;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Company extends EntityAuditModel{
+public class Company extends EntityAuditModel {
 
 	private static final long serialVersionUID = 4471020384863555958L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Column(name = "CompanyId")
 	private String companyId;
 
+	@Column(name = "CompanyType")
 	@NotNull
 	private String companyType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "consumer_id", nullable = false)
+	@JoinColumn(name = "ConsumerId", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Consumer consumer;

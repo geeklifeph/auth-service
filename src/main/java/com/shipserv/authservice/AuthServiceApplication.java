@@ -26,7 +26,7 @@ public class AuthServiceApplication {
 	class DataSetup implements ApplicationRunner {
 		@Override
 		public void run(ApplicationArguments args) throws Exception {
-			Consumer consumer1 = Consumer.builder().username("acayanan@shipserv.com").clientId("client-id-here")
+			/*Consumer consumer1 = Consumer.builder().username("acayanan@shipserv.com").clientId("client-id-here")
 					.clientSecret("client-secret-here").consumerId("kong-generated-consumer-id").build();
 
 			Company company1 = Company.builder().companyId("52323").companyType("SUPPLIER").consumer(consumer1).build();
@@ -39,7 +39,7 @@ public class AuthServiceApplication {
 			companies.add(company3);
 
 			consumer1.setCompanies(companies);
-			apiConsumerRepository.save(consumer1);
+			apiConsumerRepository.save(consumer1);*/
 		}
 	}
 
