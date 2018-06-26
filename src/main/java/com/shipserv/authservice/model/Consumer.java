@@ -1,6 +1,5 @@
 package com.shipserv.authservice.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -42,7 +41,7 @@ public class Consumer extends EntityAuditModel {
 	@Id
 	private String consumerId;
 
-	@Column(name = "Username",unique = true)
+	@Column(name = "Username", unique = true)
 	@NotBlank
 	private String username;
 

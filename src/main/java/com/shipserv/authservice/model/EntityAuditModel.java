@@ -20,22 +20,21 @@ import lombok.Setter;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(
-        value = {"createdAt", "updatedAt"},
-        allowGetters = true
-)
+@JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 
 @Getter
 @Setter
-public abstract class EntityAuditModel implements Serializable{
+public abstract class EntityAuditModel implements Serializable {
+
+	private static final long serialVersionUID = 2314931936704047093L;
 
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CreatedAt", nullable = false, updatable = false)
-    @CreatedDate
-    private Date createdAt;
+	@Column(name = "CreatedAt", nullable = false, updatable = false)
+	@CreatedDate
+	private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UpdatedAt", nullable = false)
-    @LastModifiedDate
-    private Date updatedAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "UpdatedAt", nullable = false)
+	@LastModifiedDate
+	private Date updatedAt;
 }
